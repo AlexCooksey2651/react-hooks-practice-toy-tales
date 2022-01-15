@@ -14,6 +14,8 @@ function App() {
       .then(toys => setDisplayedToys(toys))
   }, [])
 
+  console.log(displayedToys)
+
   function handleClick() {
     setShowForm((showForm) => !showForm);
   }
@@ -23,9 +25,7 @@ function App() {
   }
 
   function handleCardRemoval(donatedToy) {
-    const updatedToys = displayedToys.slice().filter(toy => {
-      return toy.id !== donatedToy.id
-    })
+    const updatedToys = displayedToys.filter(toy => toy.id !== donatedToy.id)
     setDisplayedToys(updatedToys)
   }
 

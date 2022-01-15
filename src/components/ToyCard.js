@@ -2,13 +2,15 @@ import React from "react";
 
 function ToyCard({ toy, donateToy, increaseLikes }) {
   const { name, image, likes } = toy
-  console.log(typeof likes)
+
   function handleClickDonate() {
+    console.log(toy)
+    console.log(toy.id)
     fetch(`http://localhost:3001/toys/${toy.id}`, {
       method: "DELETE",
     })
       .then(response => response.json())
-      .then(donatedToy => donateToy(donatedToy))
+      .then(() => donateToy(toy))
   }
 
   function handleClickLike() {
@@ -18,7 +20,7 @@ function ToyCard({ toy, donateToy, increaseLikes }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        likes: toy.likes ++,
+        likes: (toy.likes + 1),
       }),
     })
       .then(response => response.json())
